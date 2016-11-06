@@ -11,7 +11,4 @@ public class ConditionalContext {
   public void setParam(String param) {
     this.param = param;
   }
-
-
-
 }
