@@ -17,6 +17,9 @@ public class ConditionalFilter implements ContainerRequestFilter {
   @Context
   private ResourceInfo resourceInfo;
 
+  /*
+   * Set header based on different endpoint Condition annotation, this is just for testing purpose.
+   */
   @Override
   public void filter(ContainerRequestContext requestContext) throws IOException {
     if (resourceInfo.getResourceMethod()
