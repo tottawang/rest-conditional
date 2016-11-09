@@ -12,7 +12,7 @@ import javax.ws.rs.ext.Provider;
 @ConditionNameBindings.ConditionalTwo
 public class ConditionalTwoFilter implements ContainerRequestFilter {
 
-  public static final String HEADER = "X-Condition";
+  public static final String HEADER = "X-Condition-Two";
 
   @Context
   private ResourceInfo resourceInfo;
