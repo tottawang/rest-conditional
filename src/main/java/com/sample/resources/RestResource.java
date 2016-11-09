@@ -8,13 +8,13 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
 
-import com.sample.filter.ConditionOne;
-import com.sample.filter.ConditionTwo;
-import com.sample.filter.ConditionalFilter;
+import com.sample.filter.ConditionNameBindings;
+import com.sample.filter.ConditionalOneFilter;
 
 @Component
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/api")
+@ConditionNameBindings.ConditionalOne
 public class RestResource {
 
   /**
@@ -26,8 +26,14 @@ public class RestResource {
    */
   @GET
   @Path("condition-one")
-  @ConditionOne()
-  public String getConditionOne(@HeaderParam(ConditionalFilter.HEADER) String header) {
+  public String getConditionOne(@HeaderParam(ConditionalOneFilter.HEADER) String header) {
+    return header;
+  }
+
+  @GET
+  @Path("condition-one-explicit")
+  @ConditionNameBindings.ConditionalOne
+  public String getConditionOneExplicitly(@HeaderParam(ConditionalOneFilter.HEADER) String header) {
     return header;
   }
 
@@ -40,21 +46,8 @@ public class RestResource {
    */
   @GET
   @Path("condition-two")
-  @ConditionTwo()
-  public String getConditionTwo(@HeaderParam(ConditionalFilter.HEADER) String header) {
-    return header;
-  }
-
-  /**
-   * getConditionNon endpoint without Condition annotation returns empty, implemented by
-   * ConditionalFilter
-   * 
-   * @param header
-   * @return
-   */
-  @GET
-  @Path("condition-non")
-  public String getConditionNon(@HeaderParam(ConditionalFilter.HEADER) String header) {
+  @ConditionNameBindings.ConditionalTwo
+  public String getConditionTwo(@HeaderParam(ConditionalOneFilter.HEADER) String header) {
     return header;
   }
 }
